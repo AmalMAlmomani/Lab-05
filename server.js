@@ -2,15 +2,11 @@
 // make a variable called express to use the express library
 const express = require('express');
 // initialize the express
-const server = express();
+const app = express();
 // create a port number
 const PORT = process.env.PORT || 3000;
 //access any files inside the public folder
-server.use(express.static('./public'));
+app.use(express.static('./public'));
 // http://localhost:3000/test
-server.get('/test', (request, response) => {
-    response.send('You are doing great');
-});
-server.listen(PORT, () => {
-    console.log('listening on port', PORT);
-});
+app.use('*', (request, response) => response.send('Sorry, that route does not exist.'));
+app.listen(PORT,() => console.log(`Listening on port ${PORT}`));
